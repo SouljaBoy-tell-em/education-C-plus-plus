@@ -90,7 +90,66 @@ int main () {
 
     */
 
+    /*
 
+    char ch;
+    std:: cin >> ch;
+    std:: cout << "symbol: " << ch << std:: endl;
+    std:: cout << "cout.put () symbol: ";
+    std:: cout.put (ch);
+
+    */
+
+    /*
+
+    using namespace std;
+    cout << "\aOperation \"Hyperhype\" is now activated!\n";
+    cout << "Enter your agent code:__________\b\b\b\b\b\b\b\b\b\b";
+    long code;
+    cin >> code;
+    cout << "\aYou entered " << code << "...\n";
+    cout << "\aCode verified! Proceed with plan z3!\n";
+
+    */
+
+    /*
+
+    int k\u00F6rper = 23; // равносильно: int korper = 23;
+                          // \u00F6 - код символа 'o';
+
+    std:: cout << "k\u00F6rper: "  << k\u00F6rper << std:: endl;
+
+    */
+
+    /*
+
+    wchar_t bob = L'P'; // wchar_t - тип для самого большого набора символов в системе;
+                        // 2-хбайтный целочисленный тип;
+
+    std:: wcout << bob << std:: endl;
+    std:: cout << sizeof (wchar_t) << std:: endl;
+
+    */
+
+    /*
+
+    using namespace std;
+    char16_t ch16 = u'q';
+    char32_t ch32 = U'/U0000222B';
+    cout << "16: " << ch16 << endl;
+
+    */
+
+    /*
+
+    bool start = -228; // start = true;
+    bool end = 0;      // end = false;
+
+    */
+
+
+
+    
 
     return 0;
 
