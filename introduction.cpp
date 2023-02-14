@@ -148,8 +148,157 @@ int main () {
     */
 
 
+    /*
 
-    
+    using namespace std;
+    float hats, heads;
+
+    cout.setf (ios_base::fixed, ios_base::floatfield); // формат с фиксированной точкой (по дефолту это 6 знаков после точки);
+    cout << "Enter hats: ";
+    cin >> hats;
+    cout << "\nEnter heads: ";
+    cin >> heads;
+    cout << "\nSum: " << hats + heads;
+
+    // => когда нужна более высокая точность, то используем double, long double;
+
+    */
+
+
+    /*
+
+    using namespace std;
+    const int code = 66;
+    int x = 66;
+    char c1 = {66}; // можно присвоить константное выражение;
+    char c2 = {code}; // аналогично;
+    char c3 = {54522};  // выход за пределы типа char. Сужение не разрешено;
+    char c4 = {x}; // так делать не желательно, т.к. x != const;
+    char c5 = x; // так делать можно;
+    cout << c1 << " " << c2 << " " << c3 << " " << c4;
+
+    */
+ 
+
+    /*
+
+    // ПРИВЕДЕНИЕ ТИПОВ (пример):
+
+    using namespace std;
+    int a = 44;
+    cout.setf (ios_base::fixed, ios_base::floatfield);
+    cout << "(double) a = " << (double) a << endl << "a (double) = " << double (a);
+
+    */
+
+
+    /*
+
+    using namespace std;
+    char ch = 'Z';
+    cout << static_cast<int>(ch) << endl; //получение кода символа 'Z' при помощи static_cast<...>(...);
+
+    */
+
+
+    // Назначение такого типа, которым инициализируется переменная (auto);
+    //auto n = 100; // т.е. n - это переменная, хранящая целочисленный тип;
+    //auto x = 1.5; // т.е. x - это переменная, хранящая тип double;
+
+
+    /*
+
+    // МАССИВЫ:
+    int arr [10] = {1}; // первый элемент массива arr[0] = 1; остальные - нулевые;
+    double earnings[4] {1.2, 2.3, -2.7, 0.8}; // так можно инициализировать в С++11;
+    int counts [10] = {}; // установка всех элементов в 0;
+    float balances [100] {}; //аналогично: все элементы в 0, кроме первого;
+
+    // ИНИЦИАЛИЗАЦИЯ СТРОК:
+    char dog [4] = {'l', 'o', 'l', '\0'};
+    char bird [11] = "Mr.Cheeps"; // наличие \0 подразумевается;
+    char fish [] = "Bubbles"; //позволяет компилятору посчитать количество символов;
+
+    */
+
+    /* //КОНКАТЕНАЦИЯ СТРОК:
+    using namespace std;
+    cout << "I'd give my right arm to be" " a great violinist.\n";
+    cout << "I'd give my right arm to be a great violinist.\n";
+    cout << "I'd give my right arm to be" 
+            " a great violinist.\n";
+
+    */
+
+
+    /*
+
+    char name[20];
+    std:: cin.getline (name, 20);   // считывает строку, отбрасывая \n и меняя его на \0
+    std:: cout << name;
+
+    */
+
+    /*
+
+    using namespace std;
+    char word1[20];
+    char word2[20];
+    cin.get (word1, 20);    // когда cin.get(..., ...); достигает \n он завершает строку и оставляет \n в потоке;
+    cin.get ();             // cin.get () получает \n; 
+    cin.get (word2, 20);    // cin.get (..., ...); получает вторую строку;
+
+    cout << word1 << word2;
+
+    */
+
+    /*
+
+    char word1[20];
+    char word2[20];
+    std:: cin.getline (word1, 20).getline (word2, 20); // конкатенация двух функций;
+    std:: cout << word1 << std:: endl << word2;
+
+    */
+
+    /*
+
+    char word[20];
+    std:: cin.get (word, 20);
+    std:: cin.clear ();
+    std:: cout << word;
+
+    */
+
+    /*
+
+    // string в отличие от символьного элемента является простой переменной;
+    std:: string str;   // string - аналог массива в Си;
+    std:: cin >> str;   // ввод до первого пробела. Эквивалиентно scanf ("%s", str);
+    std:: cout << str << " symb #2: " << str[1];
+    // когда мы создаем строку str, то изначально она нулевой длины. По мере ввода она расширяется до массива символов некоторой длины;
+    // string - единая сущность, представляющая строку;
+
+    */
+
+    /*
+
+    using namespace std;
+    string str1; // str1 - изначально является пустым объектом;
+    string str2 = "Hello, world!";
+    string str3;
+    cout << "before: " << str1 << endl;
+    str1 = str2; // разрешается присваивание;
+    cout << "after: "  << str2 << endl;
+    str3 = str1 + str2; // конкатенация двух строк;
+    cout << "str3: "   << str3 << endl;
+    str2 += str1; // инкрементация; добавление в конец второй строки первой;
+    cout << "str2: "   << str2 << endl;
+
+    int size = str2.size (); // получение длины строки str2;
+    cout << size;
+
+    */
 
     return 0;
 
