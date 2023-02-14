@@ -1,5 +1,8 @@
 #include <iostream>
 #include <limits.h> // #include <climits>
+#include <cstring>
+#include <vector>
+#include <array>
 
 
 int main () {
@@ -299,6 +302,104 @@ int main () {
     cout << size;
 
     */
+
+    /*
+
+    using namespace std;
+    char word[20];
+    cin.getline (word, 20); // чтение все строки, включая пробелы;
+    cout << word;
+    getline (cin, word); // cin может быть аргументом и тогда длина строки не фиксирована;
+
+    */
+
+    /* // присваивание, указатели:
+
+    int * pt;
+    pt = (int * )0xb8000000; // присваивать можно только так. pt = 0xb8000000 - равносильно присвоению переменной типа указателя числа int
+                             // важно явно указать адрес;
+    */
+
+    /*
+
+    int * pt = new int; // динамическое выделение памяти;
+    * pt = 812;
+    std:: cout << * pt;
+    delete pt; // освобождение памяти
+
+    */
+
+    /*
+
+    int * psome = new int [10]; // выделение памяти для переменной psome (массив);
+
+    int i = 0;
+    for (i = 0; i < 10; i++)
+        psome[i] = i + 1;
+
+    for (i = 0; i < 10; i++)
+        std:: cout << psome[i] << std:: endl;
+
+    // обращение к первому элементу массива:
+
+    std:: cout << "1st element is " << * psome  << std:: endl; 
+    std:: cout << "1st element is " << psome[0] << std:: endl;
+
+    // обращение не к первому элементу массива, например, к 5-му:
+
+    std:: cout << "5th element is " << * (psome + 4) << std:: endl;
+    std:: cout << "5th element is " << psome [4]     << std:: endl;
+
+    delete [] psome; // освобождение памяти выделенной для массива;
+
+    */
+
+    /*
+
+    struct node {
+
+        int a;
+        int b;
+    };
+
+    node * ps = new node; // выделение памяти под структуру;
+    ps->a = 812;
+    ps->b = 228;
+
+    std:: cout << "a = " << ps->a << std:: endl << "b = " << ps->b << std:: endl;
+    delete ps; // освободили память, выделенную под структуру;
+
+    */
+
+    /*
+
+    vector<int> vi; // создание массива int нулевого размера;
+    int n;
+    std:: cin >> n;
+    vector<double> vd (n); // создание массива double из n элементов;
+
+    */
+
+    /*
+
+    using namespace std;
+    array<int, 5> ai; // создание массива типа int на 5 элементов;
+    array<double, 4> ad = {1.2, 2.1, 3.43, 4.3}; // создание массива типа double на 4 элемента;
+
+    //int n = 4;
+    //array<int, n> arr; // так нельзя. n должно быть явным числом. Вводить с клавы тоже нельзя;
+
+    */
+
+    /*
+
+    std:: vector<int> arr (5);
+    arr[-2] = 2014; // так программа не завершится аварийно;
+    arr.at(-2) = 812; // аварийной завершение программы; at () делает проверку;
+    
+    */
+
+    
 
     return 0;
 
