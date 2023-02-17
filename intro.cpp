@@ -3,6 +3,42 @@
 #include <cstring>
 #include <vector>
 #include <array>
+#include <ctime>
+#include <cstdio>   // #include <limits.h>
+#include <cctype>   // #include <ctype.h>
+#include <fstream>
+#include <cstdlib>
+#include <fstream>
+#include <cmath>
+
+
+const int LIMIT = 5;
+
+
+struct fordisplay {
+
+    std:: string name;
+    int made;
+};
+
+
+int sum (int n, int ( * arr)[4], int size);
+void out (std:: array <double, 4> test);
+void out1 (std:: array <double, 4> * test);
+double square2 (double x);
+inline double square (double x) {return x * x;} // встроенная функция;double deg (double x, int n = 2);
+double cubeUsual (double  a);
+double cubeLink (double & a);
+void display (const fordisplay & structdisplay);
+fordisplay & accumulate (fordisplay & target, const fordisplay & source);
+void file_it (std:: ostream & os, double fo, const double * fe, int n);
+double deg (double x, int n = 2);
+
+
+template <typename T>
+void swap (T & a, T & b);
+template <typename T>
+void swap (T & a, T & b, int c);
 
 
 int main () {
@@ -268,7 +304,7 @@ int main () {
 
     char word[20];
     std:: cin.get (word, 20);
-    std:: cin.clear ();
+    std:: cin.clear (); // восстанавливает поток, если что-
     std:: cout << word;
 
     */
@@ -399,8 +435,483 @@ int main () {
     
     */
 
+    /*
+
+    using namespace std;
+    int x = 0;
+    cout << "The expression x = 100 has the value ";
+    cout << (x = 100) << endl; // присваивание и вывод;
+    cout << "Now x = " << x << endl;
+    cout << "The expression x < 3 has the value ";
+    cout << (x < 3) << endl; // булево выражение;
+    cout << "The expression x > 3 has the value ";
+    cout << (x > 3) << endl;
+    cout.setf(ios_base::boolalpha); // после этого средства будет отображение true/false для логических выражений;
+    cout << "The expression x < 3 has the value ";
+    cout << (x < 3) << endl;
+    cout << "The expression x > 3 has the value ";
+    cout << (x > 3) << endl;
+    cout << "x = 100 ? ";
+    cout << (x == 100) << endl; // если x = 100 - выведется true;
+
+    */
+
+    /*
+
+    using namespace std;
+    string word = "?ate";
+    for (char ch = 'a'; word != "mate"; ch++) {
+
+        cout << word << endl;
+        word[0] = ch;
+    }
+
+    cout << "After loop ends, word is " << word << endl;
+
+    */
+
+    /*
+
+    using namespace std;
+    cout << "Enter the delay time in seconds: ";
+    float secs;
+    cin >> secs;
+    clock_t delay = secs * CLOCKS_PER_SEC;
+    cout << "starting\a\n";
+    clock_t start = clock ();
+
+    while (clock () - start < delay);
+    cout << "done \a\n";
+
+    */
+
+    /*
+
+    int num[5] = {1, 3, 5, 7, 6};
+
+    for (int x : num)   // цикл for, основанный на диапозоне; Отображает все значения из диапозона массива;
+        std:: cout << x << std:: endl;
+
+    // для изменения значений в массиве;
+    for (int &x : num)
+        x *= 2;
+
+    std:: cout << std:: endl << std:: endl;
+
+    for (int x : num)
+        std:: cout << x << std:: endl;
+
+    // можно делать и так: 
+    for (int x : {2, 0, 1, 4})
+        std:: cout << x << std:: endl;
+
+    */
+
+    /*
+
+    using namespace std;
+    char ch = '0';
+    int count = 0;
+    cin.get (ch);
+    while (cin.fail() == false) { // cin.fail () - проверка на EOF; 
+                                  // программа будет работать, пока не встретиться конец файла <Ctrl + Z>
+        cout << ch;
+        count++;
+        cin.get (ch);
+    }
+
+    cout << "Amount of symbols: " << count;
+
+    */
+
+    /*
+    // Аналогия с getchar () и putchar ();
+    char ch = 'a';
+    std:: cin.get (ch);
+    std:: cout.put (ch); // обязательно в качестве параметра put () должен быть тип char;
+
+    */
+
+
+    /*// ЗАПИСЬ В ФАЙЛ:
+
+    using namespace std;
+    ofstream outFile;
+    outFile.open ("fish.txt"); // outFile используется для записи в текстовый файл;
+    double wt = 812.812;
+    outFile << wt; // запись числа в файл fish.txt;
+    outFile << endl;
+    outFile << "Hello, world!\n";
+    outFile.close (); // завершение работы с файлом;
+
+    */
+
+    /*
+
+    using namespace std;
+    ofstream outFile;
+    outFile.open ("fish.txt");
+    double wt = 812.812812;
+
+    // при использовании precision () запись ведется в виде: 8e+0...;
+    cout.precision (2); // точность 2 знака после запятой для вывода на экран;
+    cout << wt;
+    outFile.precision (6); // точность 3 знака после запятой для записи в файл;
+    outFile << wt;
+    outFile.close ();
+
+    */
+
+
+    /*// ЧТЕНИЕ ИЗ ФАЙЛА:
+
+    using namespace std;
+    ifstream inFile;
+    inFile.open ("bowling.txt");
+
+    if (!inFile.is_open()) // проверка на то, удалось ли открыть файл;
+        exit (EXIT_FAILURE);
+
+    //double wt = 0;
+    //inFile >> wt; // чтение числа из файла;
+    //cout << wt;
+
+    //char line[80];
+    //inFile.getline (line, 5); // чтение строки из файла;
+    //cout << line;
+
+    int intNum = 0;
+    inFile >> intNum;
+
+
+    if (inFile.eof()) // проверка на конец файла;
+        cout << "END OF FILE\n";
+
+    if (inFile.fail ()) // прекращения ввода из-за несоответствия типа данных;
+        cout << "Other type of data. Error\n";
+
+    cout << intNum;
+
+    */
+
+
+    //int arr[3][4] = {{}};
+    //sum (4, arr, 3);
+
+
+    /*
+
+    std:: array<double, 4> test;
+    test[0] = 2;
+    test[1] = 0;
+    test[2] = 1;
+    test[3] = 4;
+    //out (test); // чтобы изменить тип array необходимо передавать указатель на него;
+    out1 (&test); // данные в этом случае изменятся, в отличие от верхней функции;
+
+    int i = 0;
+    for (i = 0; i < 4; i++)
+        std:: cout << test[i] << " ";
+
+    */
+
+    /*
+
+    double x = 2.28;
+
+    double start  = clock ();
+    std:: cout << square (x) << std:: endl;
+    double finish = clock ();
+    std:: cout << "time inline: " << (finish - start) / CLOCKS_PER_SEC << std:: endl;
+
+    std:: cout.precision (5);
+    double start1 = clock ();
+    std:: cout << square2 (x) << std:: endl;
+    double finish1 = clock ();
+    std:: cout << "time usual function: " << (finish1 - start1) / CLOCKS_PER_SEC << std:: endl;
+
+    */
+
+    /*
+
+    int rats = 812;
+    int & link = rats; // теперь переменную rats можно менять, если менять link;
+    link++; // теперь rats = 813;
+    int * prats = &rats;
+    std:: cout << "rats is " << rats << std:: endl;
+    std:: cout << "link is " << link << std:: endl;
+
+    */
+
+    /*
+
+    int rats = 101;
+    int * pt = &rats;
+    std:: cout << "pt is " << pt << std:: endl;
+    int & rodents = * pt; // нельзя создавать ссылку, а после делать присваивание;
+                          // ВАЖНО: при создании ссылки сразу осуществить присваивание;
+    std:: cout << "rodents is " << rodents << std:: endl;
+    int bunnies = 50;
+    pt = &bunnies;
+    std:: cout << "pt is " << pt << std:: endl;
+    std:: cout << "rodents is "  << rodents << std:: endl;
+
+    */
+
+    /*
+
+    using namespace std;
+
+    double x = 3;
+    cout << "usual calculation is " << cubeUsual (x) << endl;
+    cout << "x = " << x << endl;
+    cout << "link calculation is " << cubeLink (x) << endl;
+    cout << "x = " << x << endl;
+
+    */
+
+    /*
+
+    double x = 8;
+    double z = cubeLink (x);
+    std:: cout << z;
+
+    */
+
+    /*
+
+    using namespace std;
+    fordisplay structdisplay = {};
+    cout << "Info structdisplay:\n";
+    cout << "name: " << structdisplay.name << endl;
+    cout << "made: " << structdisplay.made << endl << endl;
+
+    display (structdisplay);
+    cout << "Info structdisplay:\n";
+    cout << "name: " << structdisplay.name << endl;
+    cout << "made: " << structdisplay.made << endl;
+
+    */
+
+    /*
+
+    using namespace std;
+    fordisplay yung =  {"Yung",     812};
+    cout << "name: " << yung.name << endl << "made: " << yung.made << endl;
+    fordisplay trappa = {"Trappa", 2014};
+    fordisplay empty = {"YT", 3812};
+    fordisplay empty1 = accumulate (yung, trappa); // yung = {"YungTrappa", 2826};
+    cout << endl;
+    cout << "name: " << yung.name << endl << "made: " << yung.made << endl;
+    cout << endl;
+    cout << "empty1 name: " << empty1.name << endl << "empty1 made: " << empty1.made << endl;
+    cout << endl;
+    accumulate (yung, empty1) = empty;  // Эквивалиентно: accumulate (yung, empty1); 
+                                        //                yung = empty;
+    cout << "name: " << yung.name << endl << "made: " << yung.made << endl;
+    cout << endl;
+
+    */
+
+
+    /*
+
+    std:: ofstream fout;
+    const char * fn = "ep-data.txt";
+    fout.open (fn); // открытие файла;
+    double objective = 0;
+    std:: cout << "Input focal length of your telescope objective in mm: ";
+    std:: cin  >> objective;
+    double eps[LIMIT];
+    std:: cout << "Input the focal lengths, in mm, of " << LIMIT << " eyepieces\n";
+
+    int i = 0;
+    for (i = 0; i < LIMIT; i++) {
+
+        std:: cout << "Eyepiece #" << i + 1 << ": ";
+        std:: cin  >> eps[i];
+    }
+
+    file_it (fout, objective, eps, LIMIT);
+    file_it (std:: cout, objective, eps, LIMIT);
+    std:: cout << "Done\n";
+
+    */
+
+    /*// ЗНАЧЕНИЕ В ФУНКЦИИ ПО УМОЛЧАНИЮ: если функции надо передать 1 аргумент, вместо двух заявленных, то
+    //                                  можно в ее прототипе прописать аргумент заранее, если мы не хотим
+    //                                  передавать второй аргумент функции в процессе выполнения программы;
+
+    double x = 3;
+    int degree = 3;
+    std:: cout << deg (x); // прототип: double deg (double x, int n = 2);
+
+    */
+
+
+
+    /*//TEMPLATE & TYPENAME:
+
+    int a = 4;
+    int b = 6;
+    std:: cout << "a = " << a << std:: endl << "b = " << b << std:: endl;
+
+    swap (a, b); // сгенерирована функция вида: void swap (int & a, int & b);
+    std:: cout << "a = " << a << std:: endl << "b = " << b << std:: endl;
+
+    */
+
+
+    /*
+
+    int a =   4;
+    int b =   6;
+    int c = 812;
+    std:: cout << "a = " << a << std:: endl << "b = " << b << std:: endl;
+
+    swap (a, b, c); // перегрузка функции
+    std:: cout << "a = " << a << std:: endl << "b = " << b << std:: endl;
+
+    */
+
+
     
+    
+    return 0;
+}
+
+
+
+int sum (int n, int ( * arr)[4], int size) {
+
+    int i = 0, j = 0;
+    for (i = 0; i < size; i++)
+        for (j = 0; j < n; j++)
+            std:: cout << arr[i][j] << std:: endl;
 
     return 0;
-
 }
+
+
+void out (std:: array <double, 4> test) {
+
+    test[0] = 3;
+    test[1] = 8;
+    test[2] = 1;
+    test[3] = 2;
+
+    int i = 0;
+    for (i = 0; i < 4; i++)
+        std:: cout << test[i] << " ";
+}
+
+
+void out1 (std:: array <double, 4> * test) {
+
+    ( * test)[0] = 3;
+    ( * test)[1] = 8;
+    ( * test)[2] = 1;
+    ( * test)[3] = 2;
+
+    int i = 0;
+    for (i = 0; i < 4; i++)
+        std:: cout << ( * test)[i] << " ";
+}
+
+
+double square2 (double x) {
+
+    return x * x;
+}
+
+
+double deg (double x, int n) {
+
+    return pow (x, n);
+}
+
+
+double cubeUsual (double a) {
+
+    a = a * a * a;
+
+    return a;
+}
+
+
+double cubeLink (double & a) {
+
+    a = a * a * a;
+
+    return a;
+}
+
+
+
+void display (const fordisplay & structdisplay) {
+
+    //structdisplay.name = "Yung Trappa";
+    //structdisplay.made = 812;
+
+    int a = structdisplay.made;
+   std:: cout << "a = " << a << std:: endl;
+}
+
+
+fordisplay & accumulate (fordisplay & target, const fordisplay & source)  {
+
+    target.name += source.name;
+    target.made += source.made;
+
+    return target; // возвращаем ссылку;
+}
+
+
+
+
+void file_it (std:: ostream & os, double fo, const double * fe, int n) {
+
+    std:: ios_base:: fmtflags initial; // создание переменной типа fmtflags;
+    initial = os.setf (std:: ios_base:: fixed); // в переменную initial записываем текущие настройки форматирования;
+    os.precision (0); // откинуть все значения после точки;
+    os << "Focal length of objective: " << fo << " mm\n";
+    os.setf (std:: ios_base:: showpoint); // устанавливаем новые настройки форматирования;
+    os.precision (1); // 1 знак, после точки;
+    os.width (12);    // ширина поля форматирования + выравнивание;
+    os << "f.l. eyepiece";
+    os.width (15);    // ширина поля форматирования + выравнивание;
+    os << "magnification" << std:: endl;
+
+    int i = 0;
+    for (i = 0; i < n; i++) {
+
+        os.width (12);
+        os << fe[i];
+        os.width (15);
+        os << int (fo / fe[i] + 0.5) << std:: endl;
+    }
+
+    os.setf (initial); // возврат к настройкам в начале функции;
+}
+
+
+template <typename T>
+void swap (T & a, T & b) {
+
+    T temp = a;
+    a = b;
+    b = temp;
+}
+
+
+template <typename T>
+void swap (T & a, T & b, int c) {
+
+    a = c;
+    b = c;
+}
+
+
+
+
+
