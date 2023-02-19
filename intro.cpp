@@ -10,6 +10,7 @@
 #include <cstdlib>
 #include <fstream>
 #include <cmath>
+#include <new>
 
 
 const int LIMIT = 5;
@@ -20,6 +21,12 @@ struct fordisplay {
     std:: string name;
     int made;
 };
+
+typedef struct {
+
+    int age;
+    std:: string name;
+} job;
 
 
 int sum (int n, int ( * arr)[4], int size);
@@ -39,6 +46,11 @@ template <typename T>
 void swap (T & a, T & b);
 template <typename T>
 void swap (T & a, T & b, int c);
+template <> void swap<job>(job & a, job & b); // явная специализация для шаблона job;
+
+
+template <class T>
+void swap (T & a, T & b);
 
 
 int main () {
@@ -774,9 +786,106 @@ int main () {
 
     */
 
+    /*
+
+    job a = {19, "Alex"};
+    job b = {27, "YungTrappa"};
+    swap (a, b); // явная специализация;
+
+    std:: cout << "age = " << a.age << std:: endl << "name: " << a.name << std:: endl;
+    std:: cout << std:: endl;
+    std:: cout << "age = " << b.age << std:: endl << "name: " << b.name << std:: endl;
+  
+    */
+
+
+    /*
+
+    typedef struct {
+
+        mutable char name[30]; // разрешает изменять константные данные
+        mutable int age;
+    } Human;
+
+    const Human human = {"Yung Trappa", 27};
+    strcpy (human.name, "Alexander"); // <----- изменение константных данных;
+    human.age = 19;
+
+    std:: cout << "name: " << human.name << std:: endl << "age: " << human.age << std:: endl;
+    
+    */
+
+
+    /*// создание и СРАЗУ инициализация:
+    int * pi = new int (228);
+    // double * pr = new double {2.28}; - так можно делать в С++11;
+    std:: cout << * pi << std:: endl;
+
+
+    struct where {double x; double y; double z; };
+    // where * ps = new where {2.01, 1.88, 4.98}; // C++11;
+
+    int * ar = new int [4]; // выделение памяти для массива;
+
+    */
+
+
+    /*
+
+    typedef struct {
+
+        char name[30];
+        int age;
+    } Human;
+
+    char buffer1[50] = "abcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvw";
+    char buffer2[500];
+
+    int   * pt1 = NULL;
+    Human * pt2 = NULL;
+
+    pt1 = new (buffer1) int[10]; // использование занятой памяти под массив;
+    std:: cout << "before: " << buffer1 << std:: endl;
+
+    int i = 0;
+    for (i = 0; i < 10; i++)
+        pt1[i] = 1;
+
+    std:: cout << "after: ";
+    for (i = 0; i < 10; i++)
+        std:: cout << pt1[i] << " ";
+    std:: cout << std:: endl << std:: endl;
+
+    // аналогично под структуру:
+    pt2 = new (buffer2) Human;
+    strcpy (pt2->name, "Yung Trappa");
+    pt2->age = 27;
+
+    std:: cout << "name: " << pt2->name << std:: endl << "age: " << pt2->age << std:: endl;
+    std:: cout << std:: endl;
+
+
+    Human * pt3 = NULL;
+    pt3 = new (buffer2 + sizeof (Human)) Human; // использование того же буфера для размещения второй структуры;
+    strcpy (pt3->name, "Alexander");
+    pt3->age = 19;
+
+    std:: cout << "name: " << pt2->name << std:: endl << "age: " << pt2->age << std:: endl;
+    std:: cout << std:: endl;
+    std:: cout << "name: " << pt3->name << std:: endl << "age: " << pt3->age << std:: endl;
+    std:: cout << std:: endl;
+
+
+    //delete pt1; // <--- так делать нельзя. Пытаемся освободить статическую память;
+
+    */
+
 
     
+
     
+
+
     return 0;
 }
 
@@ -911,6 +1020,13 @@ void swap (T & a, T & b, int c) {
     b = c;
 }
 
+
+template <> void swap<job>(job & a, job & b) {
+    
+    int age = a.age;
+    a.age   = b.age;
+    b.age   =   age;
+}
 
 
 
