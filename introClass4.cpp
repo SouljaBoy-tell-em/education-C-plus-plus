@@ -3,8 +3,10 @@
 
 class Time {
 	
-	friend Time operator* (double coef, Time & time);
-
+	friend Time operator* (double coef, Time & time); // дружественные функции не являются
+													  // функциями-членами, но при этом они
+												      // могут использоваться для изменения 
+													  // параметров в классе;
 	private:
 		int hours;
 		int minutes;
