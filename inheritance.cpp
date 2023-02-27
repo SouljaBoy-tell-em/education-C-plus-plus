@@ -5,7 +5,7 @@
 
 class Player {
 
-	private:
+	protected:
 		char * fname;
 		char * lname;
 		int      age;
@@ -26,7 +26,7 @@ class PointPlayer : public Player {
 	public:
 		PointPlayer (char * m_fname, char * m_lname, int m_age, double m_rating);
 		PointPlayer (double m_rating, const Player & copy);
-		//void show ();
+		void show ();
 };
 
 
@@ -44,7 +44,7 @@ int main (void) {
 	*/
 
 	PointPlayer player3 ("Ded", "32.ru", 56, 10000.1);
-	Player      player4 ("Yung", "Pretty", 30);
+	//Player      player4 ("Yung", "Pretty", 30);
 
 
 	// указатель или ссылка на базовый класс может обращаться только к методам базового класса.
@@ -66,7 +66,8 @@ int main (void) {
 
 	*/
 
-	
+	PointPlayer & link1 = player3;
+	link1.show ();
 
 	return 0;
 }
@@ -126,15 +127,16 @@ PointPlayer:: PointPlayer (double m_rating, const Player & copy) : Player (copy)
 */
 
 
-/*
-
 void PointPlayer:: show () {
 
 	Player:: show (); // если 2 класса имеют функцию, имеющую одно и то же имя - нужно указать явно через ::
 					  // к какому классу она относится;
 
 	std:: cout << "rating: " << rating << std:: endl;
+
+
+	// можно использовать параметры из базового класса, если объявить данные под спецификатором protected;
+	// std:: cout << "first name: "   << fname << std:: endl;
 }
 
-*/
 
